@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+    <title>Familia</title>
+</head>
+<body>
+    <div class="conatiner">
+        <table class="table table-bordered text-center">
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>Nombre</td>
+                    <td>Edad</td>
+                    <td>Nacimiento</td>
+                    <td>Acciones</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for familiares in familia %}
+                    <tr>
+                        <td>{{Familiares.id}}</td>
+                        <td>{{Familiares.nombre}}</td>   
+                        <td>{{Familiares.edad}}</td> 
+                        <td>{{Familiares.nacimiento}}</td>   
+                        <td>
+                           <a href="{% url 'borrar_Familiar' person.id %} "class= btn btn-danger >Eliminar</a> 
+                        </td> 
+
+                        
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div>
+        <form action=" {% url 'crear_Familiar' %}" method="POST" class="form-group mt-5" >
+            {% csrf_token %}
+            <h2>Familiares</h2>
+            <input type="text" nombre="nombre" class="form-control mb-2" placeholder="Ingrese nombre"> 
+            <input type="number" nombre="apellido"class="form-control mb-2" placeholder="Ingrese la edad" > 
+            <input type="number" nombre="nacimiento"class="form-control mb-2"placeholder="Ingrese el nacimiento">
+            <button class="btn btn-succes col-12" type="submit">Guardar</button>
+        </form>
+        
+    </div>
+</body>
+</html>
